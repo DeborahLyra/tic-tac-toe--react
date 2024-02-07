@@ -9,16 +9,14 @@ function Header() {
     <Div>
     <Title>Tic-Tac-Toe</Title>
     <Subtitle>
-        <p>Created by Deborah Lyra </p>
-        <a href='https://github.com/DeborahLyra' target='_blank'> <i class="fab fa-github"></i></a>
+        <p>Created by Deborah Lyra</p>
+        <a href='https://github.com/DeborahLyra' target='_blank'> <i className="fab fa-github"></i></a>
     </Subtitle>
 </Div>
   )
 }
 
 export const Div = styled.div`
-  height: 100%;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
