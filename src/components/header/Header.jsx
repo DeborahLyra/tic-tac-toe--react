@@ -24,7 +24,7 @@ export const Div = styled.div`
   justify-content: center;
   align-items: center;
   gap: 15px;
+  padding: 40px 0;
 `;
-
 
 export default Header
