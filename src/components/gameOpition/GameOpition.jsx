@@ -1,9 +1,19 @@
 import styled from 'styled-components';
+import Icon from '../icon/Icon';
 
-function GameOpition() {
+const GameIcon = ({ iconName }) => <Icon iconName={iconName} size="25px" />
+
+function GameOpition({ status, onClick }) {
   return (
-    <Div>
-      <p></p>
+    <Div onClick={onClick}>
+      {
+        status === 1 && <GameIcon  iconName='circle'/>
+      }
+
+      {
+        status === -1 && <GameIcon  iconName='x'/>
+      }
+
     </Div>
   )
 }
