@@ -3,8 +3,7 @@ import styled from 'styled-components';
 
 function Game() {
   return (
-    <div>
-      <p>test</p>
+    <Div>
       <GameOpition/>
       <GameOpition/>
       <GameOpition/>
@@ -14,8 +13,14 @@ function Game() {
       <GameOpition/>
       <GameOpition/>
       <GameOpition/>
-    </div>
+    </Div>
   )
 }
+
+export const Div = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+`;
 
 export default Game
