@@ -2,17 +2,18 @@ import { useState, useEffect } from "react";
 import GameOpition from "../gameOpition/GameOpition"
 import styled from 'styled-components';
 import Icon from "../icon/Icon";
+import GameInfo from "../gameInfo/GameInfo";
 
 //possibilidades de vitórias
 const winerTable = [
-  [0,1,2],
-  [3,4,5],
-  [6,7,8],
-  [0,4,8],
-  [2,4,6],
-  [0,3,6],
-  [1,4,7],
-  [2,5,8],
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
 ]
 
 function Game() {
@@ -32,9 +33,15 @@ function Game() {
   const verifyGame = () => {
     winerTable.forEach((line) => {
       const values = line.map((value) => gameState[value]); //o que está na tabela são as posicoes do array, então ele acaba pegando o item na posicao tal 
-      const acc = values.reduce((acc, value)=> acc + value) // aqui soma, pq se der 3 ou -3 tem um vencedor
-      if(acc === 3 || acc === -3) {setWinner(acc/3)}
+      const acc = values.reduce((acc, value) => acc + value) // aqui soma, pq se der 3 ou -3 tem um vencedor
+      if (acc === 3 || acc === -3) { setWinner(acc / 3) }
     })
+  }
+
+  const handleReset = () => {
+    setGameState(Array(9).fill(0));
+    setCurrentPlayer(currentPlayer === 1 ? -1 : 1);
+    setWinner(0)
   }
 
   useEffect(() => {
@@ -55,12 +62,10 @@ function Game() {
           })
         }
       </DivBoard>
-      <DivInfo>
-        <h3>Next one:</h3>
-        {
-          currentPlayer === 1 ? <Icon iconName='circle' /> : <Icon iconName='x' />
-        }
-      </DivInfo>
+      <GameInfo
+        currentPlayer={currentPlayer}
+        winner={winner}
+        onReset={handleReset} />
     </DivContainer>
 
   )
@@ -78,11 +83,5 @@ export const DivContainer = styled.div`
   gap: 60px;
 `;
 
-export const DivInfo = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 30px;
-`;
 
 export default Game
