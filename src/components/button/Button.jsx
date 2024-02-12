@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 function Button({ children, onClick, disabled }) {
     return (
-        <Btn 
-        onClick={onClick}
-        disabled = {disabled}
+        <Btn
+            onClick={onClick}
+            disabled={disabled}
         >{children}</Btn>
     )
 }
@@ -23,6 +23,7 @@ export const Btn = styled.button`
         background-color: #ffff;
         color: black;
     }
+
 `
 
 export default Button

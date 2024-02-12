@@ -17,20 +17,18 @@ function GameInfo({ currentPlayer, winner, onReset }) {
             {
                 winner !== 0 &&
                 <>
-                    <h3>End Game!</h3>
-                    <h4>The winner is:</h4>
+                    <h3>End Game! The winner is:</h3>
+                    
                     {
                         winner === 1 ? <Icon iconName='circle' /> : <Icon iconName='x' />
                     }
-                   
+                    <Button
+                        onClick={onReset}
+                        disabled={winner === 0}>
+                        Play Again
+                    </Button>
                 </>
             }
-             <Button 
-             onClick={onReset}
-             disabled= {winner === 0}>
-                Play Again
-             </Button>
-
         </DivInfo>
     )
 }
@@ -43,7 +41,7 @@ flex-direction: column;
 align-items: center;
 gap: 30px;
 padding: 20px;
-transition: all 2s ease-in-out;
+min-width: 280px;
 `;
 
 

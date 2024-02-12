@@ -80,8 +80,10 @@ export const DivBoard = styled.div`
 export const DivContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 60px;
+  gap: 30px;
+  @media (max-width: 550px){
+    flex-direction: column;
+  }
 `;
-
 
 export default Game
