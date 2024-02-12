@@ -17,7 +17,8 @@ function GameInfo({ currentPlayer, winner, onReset }) {
             {
                 winner !== 0 &&
                 <>
-                    <h3>End Game! The winner is:</h3>
+                    <h3>End Game!</h3>
+                    <h4>The winner is:</h4>
                     {
                         winner === 1 ? <Icon iconName='circle' /> : <Icon iconName='x' />
                     }
@@ -42,6 +43,7 @@ flex-direction: column;
 align-items: center;
 gap: 30px;
 padding: 20px;
+transition: all 2s ease-in-out;
 `;
 
 
