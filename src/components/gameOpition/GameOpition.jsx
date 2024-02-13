@@ -4,10 +4,10 @@ import Icon from '../icon/Icon';
 const GameIcon = ({ iconName }) => <Icon iconName={iconName} size="25px" />
 
 
-function GameOpition({ status, onClick, $iswinner }) {
- console.log($iswinner)
+function GameOpition({ status, onClick, $isWinner  }) {
+ console.log($isWinner )
   return (
-    <Div onClick={onClick} $isWinner={$iswinner} >
+    <Div onClick={onClick} $isWinner={$isWinner } >
       {
         status === 1 && <GameIcon  iconName='circle' />
       }
@@ -22,7 +22,7 @@ function GameOpition({ status, onClick, $iswinner }) {
 
 export const Div = styled.div`
   border: 2px solid;
-  border-color: ${props => props.$iswinner ? 'green' : '#ffff'};
+  border-color: ${props => props.$isWinner  ? 'green' : '#ffff'};
   border-radius: 5px;
   height: 50px;
   width: 50px;
