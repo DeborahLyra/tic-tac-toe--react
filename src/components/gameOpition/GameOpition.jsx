@@ -3,11 +3,13 @@ import Icon from '../icon/Icon';
 
 const GameIcon = ({ iconName }) => <Icon iconName={iconName} size="25px" />
 
-function GameOpition({ status, onClick }) {
+
+function GameOpition({ status, onClick, $iswinner }) {
+ console.log($iswinner)
   return (
-    <Div onClick={onClick}>
+    <Div onClick={onClick} $isWinner={$iswinner} >
       {
-        status === 1 && <GameIcon  iconName='circle'/>
+        status === 1 && <GameIcon  iconName='circle' />
       }
 
       {
@@ -19,7 +21,8 @@ function GameOpition({ status, onClick }) {
 }
 
 export const Div = styled.div`
-  border: 2px #fff solid;
+  border: 2px solid;
+  border-color: ${props => props.$iswinner ? 'green' : '#ffff'};
   border-radius: 5px;
   height: 50px;
   width: 50px;
@@ -28,6 +31,7 @@ export const Div = styled.div`
   align-items: center;
   cursor: pointer;
 `;
+
 
 export default GameOpition
 

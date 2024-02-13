@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import GameOpition from "../gameOpition/GameOpition"
 import styled from 'styled-components';
-import Icon from "../icon/Icon";
 import GameInfo from "../gameInfo/GameInfo";
 
 //possibilidades de vitórias
@@ -21,6 +20,7 @@ function Game() {
   const [gameState, setGameState] = useState(Array(9).fill(0));
   const [currentPlayer, setCurrentPlayer] = useState(1) //1 = circulo | -1 = x 
   const [winner, setWinner] = useState(0) // 0 = sem campeão | 1 = circulo ganhou | -1 = x ganhou
+  const [winnerLine, setWinnerLine] = useState([])
 
   const handleClick = (index) => {
     if (gameState[index] === 0 && winner === 0) {
@@ -35,14 +35,18 @@ function Game() {
       const values = line.map((value) => gameState[value]); //o que está na tabela são as posicoes do array, então ele acaba pegando o item na posicao tal 
       const acc = values.reduce((acc, value) => acc + value) // aqui soma, pq se der 3 ou -3 tem um vencedor
       if (acc === 3 || acc === -3) { setWinner(acc / 3) }
+      setWinnerLine(line)
     })
   }
 
   const handleReset = () => {
     setGameState(Array(9).fill(0));
-    setCurrentPlayer(currentPlayer === 1 ? -1 : 1);
     setWinner(0)
+    setWinnerLine([])
   }
+
+  const verifyWinnerLine = (index) => 
+  winnerLine.find((value)=> value === index) !== undefined
 
   useEffect(() => {
     setCurrentPlayer(currentPlayer === 1 ? -1 : 1);
@@ -54,10 +58,12 @@ function Game() {
       <DivBoard>
         {
           gameState.map((value, index) => {
-            return (<GameOpition
+            return (
+            <GameOpition
               status={value}
               key={`game-option-position-${index}`}
               onClick={() => handleClick(index)}
+              $isWinner={verifyWinnerLine(index)}
             />)
           })
         }
@@ -65,7 +71,9 @@ function Game() {
       <GameInfo
         currentPlayer={currentPlayer}
         winner={winner}
-        onReset={handleReset} />
+        onReset={handleReset} 
+
+        />
     </DivContainer>
 
   )
