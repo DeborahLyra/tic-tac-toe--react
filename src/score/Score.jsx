@@ -1,24 +1,22 @@
 import styled from 'styled-components';
 import Icon from '../components/icon/Icon';
 
-function Score() {
+function Score({ xScore, circleScore }) {
     return (
         <DivScore >
             <h4>Score:</h4>
             <DivScoreInfo>
                 <DivSingleScore>
                     <Icon iconName='circle' />
-                    <i class="fa-solid fa-equals"></i>
-                    <h2>0</h2>
+                    <i className="fa-solid fa-equals"></i>
+                    <h2>{circleScore}</h2>
                 </DivSingleScore>
                 <DivSingleScore>
                     <Icon iconName='x' />
-                    <i class="fa-solid fa-equals"></i>
-                    <h2>0</h2>
+                    <i className="fa-solid fa-equals"></i>
+                    <h2>{xScore}</h2>
                 </DivSingleScore>
             </DivScoreInfo>
-
-
         </DivScore>
     )
 }

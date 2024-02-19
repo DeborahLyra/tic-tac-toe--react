@@ -23,6 +23,9 @@ function Game() {
   const [winner, setWinner] = useState(0) // 0 = sem campeão | 1 = circulo ganhou | -1 = x ganhou
   const [winnerLine, setWinnerLine] = useState([])
   const [draw, setDraw] = useState(false)
+  const [circleScore, setCircleScore] = useState(0) 
+  const [xScore, setXScore] = useState(0) 
+  
 
   const handleClick = (index) => {
     if (gameState[index] === 0 && winner === 0) {
@@ -59,6 +62,14 @@ function Game() {
   const verifyWinnerLine = (index) =>
     winnerLine.find((value) => value === index) !== undefined
 
+    const verifyScore = () => {
+      if(winner === 1){
+        setCircleScore(circleScore + 1)
+      } else if(winner === -1){
+        setXScore(xScore + 1)
+      }
+    }
+
   useEffect(() => {
     setCurrentPlayer(currentPlayer === 1 ? -1 : 1);
     verifyGame()
@@ -68,6 +79,7 @@ function Game() {
   useEffect(() => {
     if (winner !== 0) {
       setDraw(false)
+      verifyScore()
     }
   }, [winner])
 
@@ -95,7 +107,7 @@ function Game() {
           isDraw={draw}
         />
       </DivContainer>
-      <Score/>
+      <Score xScore={xScore} circleScore={circleScore}/>
     </>
   )
 }
