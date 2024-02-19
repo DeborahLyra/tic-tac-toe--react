@@ -34,8 +34,11 @@ function Game() {
     winerTable.forEach((line) => {
       const values = line.map((value) => gameState[value]); //o que está na tabela são as posicoes do array, então ele acaba pegando o item na posicao tal 
       const acc = values.reduce((acc, value) => acc + value) // aqui soma, pq se der 3 ou -3 tem um vencedor
-      if (acc === 3 || acc === -3) { setWinner(acc / 3) }
-      setWinnerLine(line)
+      if (acc === 3 || acc === -3) { 
+        setWinner(acc / 3) 
+        setWinnerLine(line)
+      }
+      
     })
   }
 
@@ -52,6 +55,8 @@ function Game() {
     setCurrentPlayer(currentPlayer === 1 ? -1 : 1);
     verifyGame()
   }, [gameState])
+
+  console.log(winnerLine)
 
   return (
     <DivContainer>
