@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import GameOpition from "../gameOpition/GameOpition"
 import styled from 'styled-components';
 import GameInfo from "../gameInfo/GameInfo";
+import Score from "../../score/Score";
 
 //possibilidades de vitórias
 const winerTable = [
@@ -71,29 +72,31 @@ function Game() {
   }, [winner])
 
   return (
-    <DivContainer>
-      <DivBoard>
-        {
-          gameState.map((value, index) => {
-            return (
-              <GameOpition
-                status={value}
-                key={`game-option-position-${index}`}
-                onClick={() => handleClick(index)}
-                $isWinner={verifyWinnerLine(index)}
-                $isDraw={draw}
-              />)
-          })
-        }
-      </DivBoard>
-      <GameInfo
-        currentPlayer={currentPlayer}
-        winner={winner}
-        onReset={handleReset}
-        isDraw={draw}
-      />
-    </DivContainer>
-
+    <>
+      <DivContainer>
+        <DivBoard>
+          {
+            gameState.map((value, index) => {
+              return (
+                <GameOpition
+                  status={value}
+                  key={`game-option-position-${index}`}
+                  onClick={() => handleClick(index)}
+                  $isWinner={verifyWinnerLine(index)}
+                  $isDraw={draw}
+                />)
+            })
+          }
+        </DivBoard>
+        <GameInfo
+          currentPlayer={currentPlayer}
+          winner={winner}
+          onReset={handleReset}
+          isDraw={draw}
+        />
+      </DivContainer>
+      <Score/>
+    </>
   )
 }
 
