@@ -6,7 +6,7 @@ function GameInfo({ currentPlayer, winner, onReset, isDraw }) {
     return (
         <DivInfo>
             {
-                isDraw === false && winner === 0  &&
+                isDraw === false && winner === 0 &&
                 <>
                     <h3>Next one:</h3>
                     {
@@ -15,7 +15,7 @@ function GameInfo({ currentPlayer, winner, onReset, isDraw }) {
                 </>
             }
             {
-                 isDraw === false && winner !== 0 &&
+                isDraw === false && winner !== 0 &&
                 <>
                     <h3>End Game! The winner is:</h3>
 
@@ -29,7 +29,7 @@ function GameInfo({ currentPlayer, winner, onReset, isDraw }) {
                 </>
             }
             {
-                isDraw && 
+                isDraw &&
                 <>
                     <h3>It's a Tie!</h3>
                     <Button
