@@ -21,6 +21,7 @@ function Game() {
   const [currentPlayer, setCurrentPlayer] = useState(1) //1 = circulo | -1 = x 
   const [winner, setWinner] = useState(0) // 0 = sem campeão | 1 = circulo ganhou | -1 = x ganhou
   const [winnerLine, setWinnerLine] = useState([])
+  const [draw, setDraw] = useState(false)
 
   const handleClick = (index) => {
     if (gameState[index] === 0 && winner === 0) {
@@ -34,11 +35,10 @@ function Game() {
     winerTable.forEach((line) => {
       const values = line.map((value) => gameState[value]); //o que está na tabela são as posicoes do array, então ele acaba pegando o item na posicao tal 
       const acc = values.reduce((acc, value) => acc + value) // aqui soma, pq se der 3 ou -3 tem um vencedor
-      if (acc === 3 || acc === -3) { 
-        setWinner(acc / 3) 
+      if (acc === 3 || acc === -3) {
+        setWinner(acc / 3)
         setWinnerLine(line)
       }
-      
     })
   }
 
@@ -46,17 +46,29 @@ function Game() {
     setGameState(Array(9).fill(0));
     setWinner(0)
     setWinnerLine([])
+    setDraw(false)
   }
 
-  const verifyWinnerLine = (index) => 
-  winnerLine.find((value)=> value === index) !== undefined
+  const verifyDraw = () => {
+    if (gameState.find((value) => value === 0) === undefined && winner === 0) {
+      setDraw(true)
+    }
+  }
+
+  const verifyWinnerLine = (index) =>
+    winnerLine.find((value) => value === index) !== undefined
 
   useEffect(() => {
     setCurrentPlayer(currentPlayer === 1 ? -1 : 1);
     verifyGame()
+    verifyDraw()
   }, [gameState])
 
-  console.log(winnerLine)
+  useEffect(() => {
+    if (winner !== 0) {
+      setDraw(false)
+    }
+  }, [winner])
 
   return (
     <DivContainer>
@@ -64,21 +76,22 @@ function Game() {
         {
           gameState.map((value, index) => {
             return (
-            <GameOpition
-              status={value}
-              key={`game-option-position-${index}`}
-              onClick={() => handleClick(index)}
-              $isWinner={verifyWinnerLine(index)}
-            />)
+              <GameOpition
+                status={value}
+                key={`game-option-position-${index}`}
+                onClick={() => handleClick(index)}
+                $isWinner={verifyWinnerLine(index)}
+                $isDraw={draw}
+              />)
           })
         }
       </DivBoard>
       <GameInfo
         currentPlayer={currentPlayer}
         winner={winner}
-        onReset={handleReset} 
+        onReset={handleReset}
 
-        />
+      />
     </DivContainer>
 
   )
