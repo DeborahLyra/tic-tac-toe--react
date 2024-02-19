@@ -90,7 +90,7 @@ function Game() {
         currentPlayer={currentPlayer}
         winner={winner}
         onReset={handleReset}
-
+        isDraw={draw}
       />
     </DivContainer>
 
